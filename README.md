@@ -1,1 +1,15 @@
-## Advanced Web Development
+# Advanced Web Development
+## 1) Write HTML/Javascript code for the following: 1. When name of the basic color is entered in the textbox and leave the textbox then it should take that color as background color.2. Until you enter the complete mobile number (means less than 10 digits) in the textbox, it should take red color as background and when it becomes complete then show the alert message. 3. Write a Javascript code to create user defined object Car with carModelName, carColor, carPrice, carSpeed properties and with displaySpeed(s),increaseSpeed(s) and DescreaseSpeed(s) as methods
+## 2) 1. Write HTML/Javacript code to change the background color of div element periodically. For example, at every 30 seconds it changes the background color. Hint: use SetInterval function. 2. Write HTML/Javascript code to make an animation for displaying set of images. It takes frequency (in milliseconds) of image repetition as input from the user. Also, it shows button to start/stop (single button which toggles) the animation.
+## 3) Write AJAX script to display the student details like Enrollment number and Name (in tabular form) from XML file stored on the same web server. After displaying student details, when enrolment number is clicked then it fetches city, address, pincode and other details for the student.
+## 4) Design Order Form with a total price updated in real time, which contains name of five products and their prices. Create a bill amount for all the products and calculate GST on the billing amount and display total amount. Use AngularJS. 
+## 5) Write AngularJS filter to check whether the entered number in the textbox is prime or not.
+## 6) Write AngularJS service which makes the square of the number when it is called.
+## 7)  Write AngularJS service which makes the addition/subtraction of two numbers entered in textboxes when Add/Sub button is clicked. 
+## 8) Write AngularJS script to read the JSON data (Student’s enrolment number and name) from the server and populate the dropdown list with enrolment number. 
+## 9) Write AngularJS validation script to validate the password and confirm password. Password must contain at least four and maximum 10 characters and must start with number only. Content of password and confirm password box must be the same otherwise it should display the appropriate message.
+## 10) Write AngularJS validation script to validate the registration form and submit button gets enabled if all the validations are passed successfully. The form contains fields like First name, last name, email address, mobile number, sex (radio button) and department (select box). 
+## 11) Write AngularJS script to implement single page web application. Make your own website which includes the pages like about you, education, hobbies, contact me etc.
+## 12) Write AngularJS script to implement custom directive (reusable component) for calculator with operations like add, subtraction and multiplication. 
+## 13) Write NodeJS code to implement web server to serve the different content based on URL.
+## 14) Write NodeJS code to provide the file upload facility to the user. It also imposes the restriction of file size to be uploaded. 
