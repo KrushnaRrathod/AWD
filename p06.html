@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="squareApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Square Service</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="SquareController">
+    <h2>Square Service</h2>
+    
+    <label>Enter a number:</label>
+    <input type="number" ng-model="number">
+    
+    <p ng-if="number !== undefined">Square of {{ number }} is {{ squareService.square(number) }}</p>
+</div>
+
+<script>
+var app = angular.module('squareApp', []);
+
+app.service('squareService', function() {
+    this.square = function(number) {
+        return number * number;
+    };
+});
+
+app.controller('SquareController', function($scope, squareService) {
+    $scope.squareService = squareService;
+});
+</script>
+
+</body>
+</html>

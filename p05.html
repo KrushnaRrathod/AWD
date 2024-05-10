@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="primeApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Number Checker</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="PrimeController">
+    <h2>Prime Number Checker</h2>
+    
+    <label>Enter a number:</label>
+    <input type="number" ng-model="number">
+    
+    <p ng-if="number !== undefined">Entered number {{ number }} is <span ng-if="isPrime(number)">prime</span><span ng-if="!isPrime(number)">not prime</span>.</p>
+</div>
+
+<script>
+var app = angular.module('primeApp', []);
+
+app.controller('PrimeController', function($scope) {
+    $scope.isPrime = function(number) {
+        if (number <= 1) return false;
+        if (number <= 3) return true;
+        if (number % 2 === 0 || number % 3 === 0) return false;
+        for (var i = 5; i * i <= number; i += 6) {
+            if (number % i === 0 || number % (i + 2) === 0) return false;
+        }
+        return true;
+    };
+});
+</script>
+
+</body>
+</html>

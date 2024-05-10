@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="studentApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Enrollment Numbers</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="StudentController">
+    <h2>Student Enrollment Numbers</h2>
+    
+    <label>Select enrollment number:</label>
+    <select ng-model="selectedEnrollment" ng-options="student.enrollment for student in students">
+        <option value="">-- Select Enrollment Number --</option>
+    </select>
+    
+    <div ng-if="selectedEnrollment">
+        <p>Selected enrollment number: {{ selectedEnrollment }}</p>
+        <p>Student Name: {{ getStudentName(selectedEnrollment) }}</p>
+    </div>
+</div>
+
+<script>
+var app = angular.module('studentApp', []);
+
+app.controller('StudentController', function($scope, $http) {
+    $http.get('students.json').then(function(response) {
+        $scope.students = response.data;
+    });
+
+    $scope.getStudentName = function(enrollmentNumber) {
+        var student = $scope.students.find(function(student) {
+            return student.enrollment === enrollmentNumber;
+        });
+        return student ? student.name : '';
+    };
+});
+</script>
+
+</body>
+</html>

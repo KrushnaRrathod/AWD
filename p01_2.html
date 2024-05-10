@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Number Input</title>
+</head>
+<body>
+
+<input type="text" id="mobileInput" placeholder="Enter mobile number">
+
+<script>
+document.getElementById('mobileInput').addEventListener('input', function() {
+    if (this.value.length < 10) {
+        this.style.backgroundColor = 'red';
+    } else {
+        this.style.backgroundColor = '';
+        alert('Mobile number is complete!');
+    }
+});
+</script>
+
+</body>
+</html>

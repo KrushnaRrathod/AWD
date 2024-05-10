@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Object</title>
+</head>
+<body>
+
+<script>
+function Car(carModelName, carColor, carPrice, carSpeed) {
+    this.carModelName = carModelName;
+    this.carColor = carColor;
+    this.carPrice = carPrice;
+    this.carSpeed = carSpeed;
+}
+
+Car.prototype.displaySpeed = function() {
+    console.log("Current speed: " + this.carSpeed + " mph");
+}
+
+Car.prototype.increaseSpeed = function(s) {
+    this.carSpeed += s;
+}
+
+Car.prototype.decreaseSpeed = function(s) {
+    this.carSpeed -= s;
+}
+
+// Example usage
+var myCar = new Car("Toyota Camry", "Silver", 25000, 120);
+myCar.displaySpeed(); // Outputs: Current speed: 120 mph
+myCar.increaseSpeed(20);
+myCar.displaySpeed(); // Outputs: Current speed: 140 mph
+myCar.decreaseSpeed(30);
+myCar.displaySpeed(); // Outputs: Current speed: 110 mph
+</script>
+
+</body>
+</html>

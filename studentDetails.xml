@@ -1,0 +1,19 @@
+<students>
+    <student>
+        <enrollmentNumber>001</enrollmentNumber>
+        <name>John Doe</name>
+        <city>New York</city>
+        <address>123 Main Street</address>
+        <pincode>10001</pincode>
+        <otherDetails>...</otherDetails>
+    </student>
+    <student>
+        <enrollmentNumber>002</enrollmentNumber>
+        <name>Jane Smith</name>
+        <city>Los Angeles</city>
+        <address>456 Elm Street</address>
+        <pincode>90001</pincode>
+        <otherDetails>...</otherDetails>
+    </student>
+    <!-- More students here -->
+</students>

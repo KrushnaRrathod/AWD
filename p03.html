@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Details</title>
+</head>
+<body>
+
+<h2>Student Details</h2>
+<table id="studentTable" border="1">
+    <thead>
+        <tr>
+            <th>Enrollment Number</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody id="studentBody">
+        <!-- Student details will be populated here -->
+    </tbody>
+</table>
+
+<div id="studentDetails"></div>
+
+<script>
+// Function to load student details from XML file
+function loadStudentDetails() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            displayStudentDetails(this.responseXML);
+        }
+    };
+    xhttp.open("GET", "studentDetails.xml", true);
+    xhttp.send();
+}
+
+// Function to display student details in a table
+function displayStudentDetails(xml) {
+    var table = document.getElementById("studentBody");
+    var students = xml.getElementsByTagName("student");
+    for (var i = 0; i < students.length; i++) {
+        var enrollmentNumber = students[i].getElementsByTagName("enrollmentNumber")[0].childNodes[0].nodeValue;
+        var name = students[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+        var row = table.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = '<a href="#" onclick="showStudentDetails(' + enrollmentNumber + ')">' + enrollmentNumber + '</a>';
+        cell2.innerHTML = name;
+    }
+}
+
+// Function to fetch and display student details when enrollment number is clicked
+function showStudentDetails(enrollmentNumber) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            displayStudentDetailsModal(this.responseXML, enrollmentNumber);
+        }
+    };
+    xhttp.open("GET", "studentDetails.xml", true);
+    xhttp.send();
+}
+
+// Function to display student details in a modal
+function displayStudentDetailsModal(xml, selectedEnrollmentNumber) {
+    var students = xml.getElementsByTagName("student");
+    for (var i = 0; i < students.length; i++) {
+        var enrollmentNumber = students[i].getElementsByTagName("enrollmentNumber")[0].childNodes[0].nodeValue;
+        if (enrollmentNumber == selectedEnrollmentNumber) {
+            var city = students[i].getElementsByTagName("city")[0].childNodes[0].nodeValue;
+            var address = students[i].getElementsByTagName("address")[0].childNodes[0].nodeValue;
+            var pincode = students[i].getElementsByTagName("pincode")[0].childNodes[0].nodeValue;
+            var otherDetails = students[i].getElementsByTagName("otherDetails")[0].childNodes[0].nodeValue;
+            var studentDetails = document.getElementById("studentDetails");
+            studentDetails.innerHTML = "<h3>Student Details</h3>" +
+                                        "<p>City: " + city + "</p>" +
+                                        "<p>Address: " + address + "</p>" +
+                                        "<p>Pincode: " + pincode + "</p>" +
+                                        "<p>Other Details: " + otherDetails + "</p>";
+        }
+    }
+}
+
+// Load student details when the page loads
+loadStudentDetails();
+</script>
+
+</body>
+</html>

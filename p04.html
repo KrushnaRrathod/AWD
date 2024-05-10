@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="orderApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Form</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="OrderController">
+    <h2>Order Form</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price ($)</th>
+                <th>Quantity</th>
+                <th>Total ($)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in products">
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td><input type="number" ng-model="product.quantity" ng-change="calculateTotal()"></td>
+                <td>{{ product.total }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div>
+        <p>Subtotal: {{ subtotal }}</p>
+        <p>GST (18%): {{ gst }}</p>
+        <p>Total Amount: {{ totalAmount }}</p>
+    </div>
+</div>
+
+<script>
+var app = angular.module('orderApp', []);
+
+app.controller('OrderController', function($scope) {
+    $scope.products = [
+        { name: 'Product 1', price: 10, quantity: 0, total: 0 },
+        { name: 'Product 2', price: 15, quantity: 0, total: 0 },
+        { name: 'Product 3', price: 20, quantity: 0, total: 0 },
+        { name: 'Product 4', price: 25, quantity: 0, total: 0 },
+        { name: 'Product 5', price: 30, quantity: 0, total: 0 }
+    ];
+    
+    $scope.subtotal = 0;
+    $scope.gst = 0;
+    $scope.totalAmount = 0;
+    
+    $scope.calculateTotal = function() {
+        $scope.subtotal = 0;
+        angular.forEach($scope.products, function(product) {
+            product.total = product.price * product.quantity;
+            $scope.subtotal += product.total;
+        });
+        
+        $scope.gst = $scope.subtotal * 0.18;
+        $scope.totalAmount = $scope.subtotal + $scope.gst;
+    };
+});
+</script>
+
+</body>
+</html>

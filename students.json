@@ -1,0 +1,7 @@
+[
+    { "enrollment": "EN123", "name": "John Doe" },
+    { "enrollment": "EN456", "name": "Jane Smith" },
+    { "enrollment": "EN789", "name": "Alice Johnson" },
+    { "enrollment": "EN101", "name": "Bob Brown" },
+    { "enrollment": "EN202", "name": "Emily Davis" }
+]

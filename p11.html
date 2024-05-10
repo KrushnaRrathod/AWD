@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myWebsite">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Website</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<style>
+    /* Style for navigation links */
+    .nav-link {
+        cursor: pointer;
+        margin-right: 20px;
+        text-decoration: underline;
+    }
+    
+    /* Style for content */
+    .content {
+        padding: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div ng-controller="PageController">
+    <h1>My Website</h1>
+    
+    <!-- Navigation links -->
+    <div class="nav-link" ng-click="changePage('about')">About Me</div>
+    <div class="nav-link" ng-click="changePage('education')">Education</div>
+    <div class="nav-link" ng-click="changePage('hobbies')">Hobbies</div>
+    <div class="nav-link" ng-click="changePage('contact')">Contact Me</div>
+    
+    <!-- Content area -->
+    <div class="content">
+        <div ng-show="currentPage === 'about'">
+            <h2>About Me</h2>
+            <p>I am a passionate web developer...</p>
+        </div>
+        
+        <div ng-show="currentPage === 'education'">
+            <h2>Education</h2>
+            <p>I studied Computer Science at XYZ University...</p>
+        </div>
+        
+        <div ng-show="currentPage === 'hobbies'">
+            <h2>Hobbies</h2>
+            <p>My hobbies include reading, hiking, and playing guitar...</p>
+        </div>
+        
+        <div ng-show="currentPage === 'contact'">
+            <h2>Contact Me</h2>
+            <p>You can contact me at myemail@example.com...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+var app = angular.module('myWebsite', []);
+
+app.controller('PageController', function($scope) {
+    $scope.currentPage = 'about'; // Default page
+    
+    // Function to change the current page
+    $scope.changePage = function(page) {
+        $scope.currentPage = page;
+    };
+});
+</script>
+
+</body>
+</html>

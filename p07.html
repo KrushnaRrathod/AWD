@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mathApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addition/Subtraction Service</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="MathController">
+    <h2>Addition/Subtraction Service</h2>
+    
+    <label>Enter first number:</label>
+    <input type="number" ng-model="num1">
+    
+    <label>Enter second number:</label>
+    <input type="number" ng-model="num2">
+    
+    <button ng-click="add()">Add</button>
+    <button ng-click="subtract()">Subtract</button>
+    
+    <p ng-if="result !== undefined">Result: {{ result }}</p>
+</div>
+
+<script>
+var app = angular.module('mathApp', []);
+
+app.service('mathService', function() {
+    this.add = function(num1, num2) {
+        return num1 + num2;
+    };
+    
+    this.subtract = function(num1, num2) {
+        return num1 - num2;
+    };
+});
+
+app.controller('MathController', function($scope, mathService) {
+    $scope.add = function() {
+        $scope.result = mathService.add($scope.num1, $scope.num2);
+    };
+    
+    $scope.subtract = function() {
+        $scope.result = mathService.subtract($scope.num1, $scope.num2);
+    };
+});
+</script>
+
+</body>
+</html>

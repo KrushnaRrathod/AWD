@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Periodic Background Color Change</title>
+<style>
+    #colorDiv {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        margin: 20px;
+        text-align: center;
+        line-height: 200px;
+        font-size: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div id="colorDiv">Color Changing Div</div>
+
+<script>
+// Function to generate a random color in hex format
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Function to change background color of div
+function changeColor() {
+    var div = document.getElementById('colorDiv');
+    div.style.backgroundColor = getRandomColor();
+}
+
+// Change color initially
+changeColor();
+
+// Change color every 30 seconds
+setInterval(changeColor, 30000);
+</script>
+
+</body>
+</html>

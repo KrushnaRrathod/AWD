@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Animation</title>
+<style>
+    #imageContainer {
+        width: 400px;
+        height: 300px;
+        border: 1px solid black;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #imageContainer img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+
+    #controls {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div id="imageContainer">
+    <img src="image1.jpg" alt="Image 1">
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+</div>
+
+<div id="controls">
+    <button id="toggleButton">Start Animation</button>
+    <label for="frequencyInput">Frequency (ms):</label>
+    <input type="number" id="frequencyInput" value="1000">
+</div>
+
+<script>
+var intervalId = null;
+var images = document.querySelectorAll('#imageContainer img');
+var currentIndex = 0;
+var isAnimating = false;
+
+function toggleAnimation() {
+    if (!isAnimating) {
+        startAnimation();
+        document.getElementById('toggleButton').textContent = 'Stop Animation';
+    } else {
+        stopAnimation();
+        document.getElementById('toggleButton').textContent = 'Start Animation';
+    }
+}
+
+function startAnimation() {
+    var frequency = parseInt(document.getElementById('frequencyInput').value);
+    intervalId = setInterval(changeImage, frequency);
+    isAnimating = true;
+}
+
+function stopAnimation() {
+    clearInterval(intervalId);
+    isAnimating = false;
+}
+
+function changeImage() {
+    images[currentIndex].style.display = 'none';
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].style.display = 'block';
+}
+
+document.getElementById('toggleButton').addEventListener('click', toggleAnimation);
+</script>
+
+</body>
+</html>

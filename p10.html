@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="registrationApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form Validation</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="RegistrationController">
+    <h2>Registration Form</h2>
+    
+    <form name="registrationForm" novalidate>
+        <label>First Name:</label>
+        <input type="text" name="firstName" ng-model="user.firstName" ng-minlength="2" ng-maxlength="30" required>
+        <div ng-show="registrationForm.firstName.$error.required && registrationForm.firstName.$touched">First name is required.</div>
+        <div ng-show="registrationForm.firstName.$error.minlength && registrationForm.firstName.$touched">First name must be at least 2 characters long.</div>
+        <div ng-show="registrationForm.firstName.$error.maxlength && registrationForm.firstName.$touched">First name cannot exceed 30 characters.</div>
+        
+        <label>Last Name:</label>
+        <input type="text" name="lastName" ng-model="user.lastName" ng-minlength="2" ng-maxlength="30" required>
+        <div ng-show="registrationForm.lastName.$error.required && registrationForm.lastName.$touched">Last name is required.</div>
+        <div ng-show="registrationForm.lastName.$error.minlength && registrationForm.lastName.$touched">Last name must be at least 2 characters long.</div>
+        <div ng-show="registrationForm.lastName.$error.maxlength && registrationForm.lastName.$touched">Last name cannot exceed 30 characters.</div>
+        
+        <label>Email Address:</label>
+        <input type="email" name="email" ng-model="user.email" required>
+        <div ng-show="registrationForm.email.$error.required && registrationForm.email.$touched">Email address is required.</div>
+        <div ng-show="registrationForm.email.$error.email && registrationForm.email.$touched">Invalid email address.</div>
+        
+        <label>Mobile Number:</label>
+        <input type="tel" name="mobile" ng-model="user.mobile" ng-pattern="/^\d{10}$/" required>
+        <div ng-show="registrationForm.mobile.$error.required && registrationForm.mobile.$touched">Mobile number is required.</div>
+        <div ng-show="registrationForm.mobile.$error.pattern && registrationForm.mobile.$touched">Invalid mobile number. Must be 10 digits.</div>
+        
+        <label>Sex:</label>
+        <input type="radio" name="sex" ng-model="user.sex" value="male" required> Male
+        <input type="radio" name="sex" ng-model="user.sex" value="female" required> Female
+        <div ng-show="registrationForm.sex.$error.required && registrationForm.sex.$touched">Please select your sex.</div>
+        
+        <label>Department:</label>
+        <select name="department" ng-model="user.department" required>
+            <option value="">-- Select Department --</option>
+            <option value="IT">IT</option>
+            <option value="Finance">Finance</option>
+            <option value="HR">HR</option>
+            <!-- Add more options as needed -->
+        </select>
+        <div ng-show="registrationForm.department.$error.required && registrationForm.department.$touched">Please select your department.</div>
+        
+        <button type="submit" ng-disabled="registrationForm.$invalid" ng-click="submitForm()">Submit</button>
+    </form>
+    
+    <div ng-show="submitted && registrationForm.$valid">
+        <p>Form submitted successfully!</p>
+    </div>
+</div>
+
+<script>
+var app = angular.module('registrationApp', []);
+
+app.controller('RegistrationController', function($scope) {
+    $scope.user = {};
+    $scope.submitted = false;
+
+    $scope.submitForm = function() {
+        $scope.submitted = true;
+    };
+});
+</script>
+
+</body>
+</html>
